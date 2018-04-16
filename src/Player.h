@@ -21,6 +21,8 @@ class Player
 		char GetPawn();
 		void SetPawn(char value);
 		string GetName();
+		bool GetStop();
+		void SetStop(bool value);
 		void Move(int steps);
 		void PrintPlayer();
 		virtual ~Player();
@@ -29,6 +31,7 @@ class Player
 		int position;
 		string name;
 		char pawn;
+		bool stop;
 };
 
 typedef Player *PTR_Player;

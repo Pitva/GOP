@@ -35,6 +35,7 @@ void PrintPlayer(PTR_Player playerArray[], int playerCount)
 void PrintPath(PTR_Casselli casselliArray[], int casselliCount, PTR_Player playerArray[], int playerCount)
 {
 	for (int i = 0; i < casselliCount; i++)
+
 	{
 		casselliArray[i]->PrintCasselli();
 
@@ -60,28 +61,45 @@ void ClearTerminal()
 
 void GeneratePath(PTR_Casselli casselli[], int casselliCount, PTR_Effect effects[], int length)
 {
-	casselli[0] = new Casselli(Innocuo, 0, NULL);
+	casselli[0] = new Casselli(Harmless, 0, NULL);
 
 	for (int i = 1; i < casselliCount - 1; i++)
 	{
 		int randomEffect = rand() % length;
-		int casselloType = rand() % 9;
+		int casselloType = rand() % 39;
 
-		if (casselloType < 5)
+		if (casselloType < 20)
 		{
-			casselli[i] = new Casselli(Innocuo, i, NULL);
+			casselli[i] = new Casselli(Harmless, i, NULL);
 		}
-		else if (casselloType > 4 && casselloType < 7)
+
+		else if (casselloType > 19 && casselloType < 29)
 		{
-			casselli[i] = new Casselli(Federicolo, i, effects[randomEffect]);
+			casselli[i] = new Casselli(Effect, i, effects[randomEffect]);
 		}
-		else if (casselloType > 6)
+
+		else if (casselloType > 28 && casselloType < 33)
 		{
-			casselli[i] = new Casselli(Carta, i, effects[randomEffect]);
+			casselli[i] = new Casselli(Stop, i, effects[randomEffect]);
+		}
+
+		else if (casselloType > 32 && casselloType < 34)
+		{
+			casselli[i] = new Casselli(Swap, i, effects[randomEffect]);
+		}
+
+		else if (casselloType > 33 && casselloType < 36)
+		{
+			casselli[i] = new Casselli(Tp, i, effects[randomEffect]);
+		}
+
+		else if (casselloType > 35)
+		{
+			casselli[i] = new Casselli(Card, i, effects[randomEffect]);
 		}
 	}
 
-	casselli[casselliCount - 1] = new Casselli(Innocuo, casselliCount - 1, NULL);
+	casselli[casselliCount - 1] = new Casselli(Harmless, casselliCount - 1, NULL);
 }
 
 int main()
@@ -149,6 +167,8 @@ int main()
 
 		int diceNumber = dice.Roll();
 
+		ClearTerminal();
+
 		cout << "E' uscito il numero " << diceNumber << "." << endl;
 
 		string roundFinished = "";
@@ -157,16 +177,32 @@ int main()
 		players[currentPlayer]->Move(diceNumber);
 
 		//TODO: aggiungere effetti
-		if (casselli[players[currentPlayer]->GetPosition()]->GetType() != Innocuo)
+		if (casselli[players[currentPlayer]->GetPosition()]->GetType() != Harmless)
 		{
 			casselli[players[currentPlayer]->GetPosition()]->GetEffect()->PrintEffect();
-			casselli[players[currentPlayer]->GetPosition()]->GetEffect();
+
+			string waitToDeploy = "";
+			cin >> waitToDeploy;
+
+			casselli[players[currentPlayer]->GetPosition()]->GetEffect()->Deploy(players[currentPlayer]);
+
+			//Step-backwards clamp
+			if (players[currentPlayer]->GetPosition() < 0)
+			{
+				players[currentPlayer]->SetPosition(0);
+			}
+
+			//Step-forward clamp
+			if (players[currentPlayer]->GetPosition() > casselliCount - 1)
+			{
+				players[currentPlayer]->SetPosition(casselliCount - 1);
+			}
 		}
 
 		cout << endl;
 		PrintPath(casselli, casselliCount, players, playerCount);
 
-		if (players[currentPlayer]->GetPosition() > casselliCount - 1)
+		if (players[currentPlayer]->GetPosition() >= casselliCount - 1)
 		{
 			players[currentPlayer]->SetPosition(casselliCount - 1);
 			cout << players[currentPlayer]->GetName() << " ha vinto la partita.";
@@ -179,8 +215,6 @@ int main()
 		{
 			currentPlayer = 0;
 		}
-
-		ClearTerminal();
 	}
 
 	return 0;

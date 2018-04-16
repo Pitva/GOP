@@ -46,6 +46,16 @@ void Player::SetPawn(char value)
 	this->pawn = value;
 }
 
+bool Player::GetStop()
+{
+	return this->stop;
+}
+
+void Player::SetStop(bool value)
+{
+	this->stop = value;
+}
+
 void Player::Move(int steps)
 {
 	this->position += steps;

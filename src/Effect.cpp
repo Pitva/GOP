@@ -16,11 +16,6 @@ Effect::Effect(string description)
 	this->description = description;
 }
 
-void Effect::Deploy()
-{
-
-}
-
 void Effect::PrintEffect()
 {
 	cout << "L'effetto è: " << this->description;

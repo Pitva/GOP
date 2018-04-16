@@ -18,9 +18,12 @@ using namespace std;
 
 enum CasselliType
 {
-	Innocuo,
-	Federicolo,
-	Carta
+	Harmless,
+	Effect,
+	Card,
+	Stop,
+	Swap,
+	Tp
 };
 
 class Casselli {

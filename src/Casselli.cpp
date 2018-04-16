@@ -19,20 +19,20 @@ Casselli::Casselli(CasselliType type, int position, PTR_Effect effect)
 
 void Casselli::PrintCasselli()
 {
-	if (type == Innocuo)
+	if (type == Harmless)
 	{
 		cout << "\033[0;32m";
 	}
-	else if (type == Federicolo)
+	else if (type == Effect)
 	{
 		cout << "\033[0;31m";
 	}
-	else if (type == Carta)
+	else if (type == Card)
 	{
 		cout << "\033[0;35m";
 	}
 
-	cout << "|" << this->position << "|";
+	cout << "|" << this->position << "|" << " ";
 }
 
 CasselliType Casselli::GetType()

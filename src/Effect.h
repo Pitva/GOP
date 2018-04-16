@@ -7,6 +7,8 @@
 
 #ifndef EFFECT_H_
 #define EFFECT_H_
+
+#include "Player.h"
 #include <string>
 #include <iostream>
 
@@ -16,13 +18,12 @@ class Effect
 {
 	public:
 		Effect(string description);
-		virtual void Deploy();
+		virtual void Deploy(PTR_Player player);
 		void PrintEffect();
 		virtual ~Effect();
 
 	protected:
 		string description;
-
 };
 
 typedef Effect *PTR_Effect;
