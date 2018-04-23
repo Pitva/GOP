@@ -14,7 +14,7 @@ class Swap: public Effect
 {
 	public:
 		Swap(string description);
-		void Deploy(PTR_Player player, PTR_Player player2);
+		void Deploy(PTR_Player player, PTR_Player player2, int casselliCount) override;
 };
 
 #endif /* SWAP_H_ */

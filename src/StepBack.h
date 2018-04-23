@@ -14,7 +14,7 @@ class StepBack: public Effect
 {
 	public:
 		StepBack(string description);
-		void Deploy(PTR_Player player);
+		void Deploy(PTR_Player player, PTR_Player player2, int casselliCount) override;
 };
 
 #endif /* STEPBACK_H_ */

@@ -6,7 +6,7 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-//TODO: impelemntare cotrollo pLyaerOn in stampa
+//TODO: impelemntare cotrollo playerOn in stampa
 #include "Player.h"
 #include "Effect.h"
 #include "Casselli.h"

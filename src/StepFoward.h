@@ -14,7 +14,7 @@ class StepFoward: public Effect
 {
 	public:
 		StepFoward(string description);
-		void Deploy(PTR_Player player);
+		void Deploy(PTR_Player player, PTR_Player player2, int casselliCount) override;
 };
 
 #endif /* STEPFOWARD_H_ */

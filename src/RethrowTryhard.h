@@ -14,7 +14,7 @@ class RethrowTryhard : public Effect
 {
 	public:
 		RethrowTryhard(string description);
-		void Deploy(PTR_Player player);
+		void Deploy(PTR_Player player, PTR_Player player2, int casselliCount) override;
 };
 
 #endif /* RETHROWTRYHARD_H_ */
