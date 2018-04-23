@@ -12,6 +12,7 @@ Player::Player(string name, char pawn)
 	this->name = name;
 	this->pawn = pawn;
 	this->position = 0;
+	this->stop = false;
 }
 
 void Player::PrintPlayer()
@@ -31,7 +32,7 @@ int Player::GetPosition()
 	return this->position;
 }
 
-void Player::SetPosition(int value = 1)
+void Player::SetPosition(int value)
 {
 	this->position = this->position + value;
 }

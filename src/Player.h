@@ -32,6 +32,7 @@ class Player
 		string name;
 		char pawn;
 		bool stop;
+
 };
 
 typedef Player *PTR_Player;

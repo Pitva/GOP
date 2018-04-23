@@ -19,17 +19,29 @@ Casselli::Casselli(CasselliType type, int position, PTR_Effect effect)
 
 void Casselli::PrintCasselli()
 {
-	if (type == Harmless)
+	if (type == E_Harmless)
 	{
-		cout << "\033[0;32m";
+		cout << "\033[0;32m";		//green
 	}
-	else if (type == Effect)
+	else if (type == E_Effect)
 	{
-		cout << "\033[0;31m";
+		cout << "\033[0;33m";		//yellow
 	}
-	else if (type == Card)
+	else if (type == E_Swap)
 	{
-		cout << "\033[0;35m";
+		cout << "\033[0;96m" ;		//cyan high intensity
+	}
+	else if (type == E_Stop)
+	{
+		cout << "\033[0;91m";		//red High intensity
+	}
+	else if (type == E_Teleport)
+	{
+		cout << "\033[1;34m";		//bold blue
+	}
+	else if (type == E_Card)
+	{
+		cout << "\033[0;35m";		//purple
 	}
 
 	cout << "|" << this->position << "|" << " ";

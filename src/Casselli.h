@@ -11,19 +11,18 @@
 #include "Effect.h"
 #include "Player.h"
 #include <string>
-#include <queue>
 #include <iostream>
 
 using namespace std;
 
 enum CasselliType
 {
-	Harmless,
-	Effect,
-	Card,
-	Stop,
-	Swap,
-	Tp
+	E_Harmless,
+	E_Effect,
+	E_Card,
+	E_Stop,
+	E_Swap,
+	E_Teleport
 };
 
 class Casselli {

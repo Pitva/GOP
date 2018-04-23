@@ -14,7 +14,7 @@ class Swap: public Effect
 {
 	public:
 		Swap(string description);
-		void Deploy(PTR_Player player);
+		void Deploy(PTR_Player &player, PTR_Player &player2);
 };
 
 #endif /* SWAP_H_ */
