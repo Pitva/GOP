@@ -14,7 +14,7 @@ class RethrowTryhard : public Effect
 {
 	public:
 		RethrowTryhard(string description);
-		void Deploy(PTR_Player &player);
+		void Deploy(PTR_Player player);
 };
 
 #endif /* RETHROWTRYHARD_H_ */

@@ -12,7 +12,7 @@ Rethrow::Rethrow(string description) : Effect(description)
 
 }
 
-void Rethrow::Deploy(PTR_Player &player)
+void Rethrow::Deploy(PTR_Player player)
 {
 	int h = 0;
 	h = rand() % 6 + 1;

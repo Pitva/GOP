@@ -12,7 +12,7 @@ Stop::Stop(string description) : Effect(description)
 
 }
 
-void Stop::Deploy(PTR_Player &player)
+void Stop::Deploy(PTR_Player player)
 {
 	player->SetStop(true);
 }

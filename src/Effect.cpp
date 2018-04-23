@@ -21,7 +21,7 @@ void Effect::PrintEffect()
 	cout << "L'effetto e': " << this->description;
 }
 
-void Effect::Deploy(PTR_Player &player, PTR_Player &player2, int casselliCount = 0)
+void Effect::Deploy(PTR_Player player, PTR_Player player2, int casselliCount = 0)
 {
 
 }

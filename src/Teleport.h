@@ -14,7 +14,7 @@ class Teleport: public Effect
 {
 	public:
 		Teleport(string description);
-		void Deploy(PTR_Player &player, PTR_Player &player2, int casselliCount);
+		void Deploy(PTR_Player player, PTR_Player player2, int casselliCount);
 };
 
 #endif /* TELEPORT_H_ */

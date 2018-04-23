@@ -14,7 +14,7 @@ class StepBack: public Effect
 {
 	public:
 		StepBack(string description);
-		void Deploy(PTR_Player &player);
+		void Deploy(PTR_Player player);
 };
 
 #endif /* STEPBACK_H_ */

@@ -14,7 +14,7 @@ class Rethrow: public Effect
 {
 	public:
 		Rethrow(string description);
-		void Deploy(PTR_Player &player);
+		void Deploy(PTR_Player player);
 };
 
 #endif /* RETHROW_H_ */

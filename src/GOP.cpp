@@ -43,7 +43,6 @@ void PrintPlayer(PTR_Player playerArray[], int playerCount)
 void PrintPath(PTR_Casselli casselliArray[], int casselliCount, PTR_Player playerArray[], int playerCount)
 {
 	for (int i = 0; i < casselliCount; i++)
-
 	{
 		casselliArray[i]->PrintCasselli();
 
@@ -199,7 +198,6 @@ int main()
 				cout << players[currentPlayer]->GetName() << " ha vinto la partita.";
 				isFinished = true;
 			}
-
 			else if (casselli[players[currentPlayer]->GetPosition()]->GetType() != E_Harmless && casselli[players[currentPlayer]->GetPosition()]->GetType() != E_Card)
 			{
 				casselli[players[currentPlayer]->GetPosition()]->GetEffect()->PrintEffect();

@@ -12,7 +12,7 @@ StepBack::StepBack(string description) : Effect(description)
 
 }
 
-void StepBack::Deploy(PTR_Player &player)
+void StepBack::Deploy(PTR_Player player)
 {
 	player->SetPosition(player->GetPosition() - (rand() % 3 + 1));
 }

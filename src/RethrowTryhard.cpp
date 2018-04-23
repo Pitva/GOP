@@ -12,7 +12,7 @@ RethrowTryhard::RethrowTryhard(string description) : Effect(description)
 
 }
 
-void RethrowTryhard::Deploy(PTR_Player &player)
+void RethrowTryhard::Deploy(PTR_Player player)
 {
 	int h = 0;
 	h = rand() % 20 + 1;
