@@ -6,7 +6,6 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-//TODO: impelemntare cotrollo playerOn in stampa
 #include "Player.h"
 #include "Effect.h"
 #include "Casselli.h"
@@ -27,8 +26,8 @@
 
 using namespace std;
 
-const int minCasselli = 10;
-const int maxCasselli = 20;
+const int minCasselli = 25;
+const int maxCasselli = 50;
 
 void PrintPlayer(PTR_Player playerArray[], int playerCount)
 {
@@ -54,6 +53,41 @@ void PrintPath(PTR_Casselli casselliArray[], int casselliCount, PTR_Player playe
 			}
 		}
 
+		cout << endl;
+	}
+}
+
+void PrintDuck(string winner)
+{
+	cout << "               ▀█▄█▀              " << endl;
+	cout << "        ▄█████▄ ███               " << endl;
+	cout << "      ▄████████████▄██████▄       " << endl;
+	cout << "      ██████████████████████      " << endl;
+	cout << "      ██████████████████████      " << endl;
+	cout << "      █▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█      " << endl;
+	cout << "      ██████████████████████      " << endl;
+	cout << "    ▄█▀▀                  ▀▀█▄    " << endl;
+	cout << "  ▄█▀                        ▀█▄  " << "          " << winner <<endl;
+	cout << " █▀    ▄▀▀▀▀▄        ▄▀▀▀▀▄    ▀█ " << "          HA VINTO LA PARTITA!" <<endl;
+	cout << " █    █  ▄▄  █ ▄▀▀▄ █  ▄▄  █    █ " << endl;
+	cout << " █    █ ████ ██░░░░██ ████ █    █ " << endl;
+	cout << "██  ▄▄███████▀░░░░░░▀███████▄▄  ██" << endl;
+	cout << "█  ▀█░░░░░░░░░░▄▄▄▄░░░░░░░░░░█▀  █" << endl;
+	cout << "█   ▀█▀▄▄▄▄▄▄▀▀░░░░▀▀▄▄▄▄▄▄▀█▀   █" << endl;
+	cout << "█    ▀▄░░░░░░░░▄▄▄▄░░░░░░░░▄▀    █" << endl;
+	cout << "██     ▀▀▀▀▀▀▀▀    ▀▀▀▀▀▀▀▀     ██" << endl;
+	cout << " █▄                            ▄█ " << endl;
+	cout << "  █▄                          ▄█  " << endl;
+	cout << "   █▄                        ▄█   " << endl;
+}
+
+void ClearTerminal()
+{
+	cout << "\033[0;30m";
+	cout << "\033[46m";
+
+	for (int i = 0; i < 35; i++)
+	{
 		cout << endl;
 	}
 }
@@ -195,56 +229,61 @@ int main()
 			if (players[currentPlayer]->GetPosition() >= casselliCount - 1)
 			{
 				players[currentPlayer]->SetPosition(casselliCount - 1);
-				cout << players[currentPlayer]->GetName() << " ha vinto la partita.";
+
+				ClearTerminal();
+				PrintDuck(players[currentPlayer]->GetName());
 				isFinished = true;
 			}
-			else if (casselli[players[currentPlayer]->GetPosition()]->GetType() != E_Harmless && casselli[players[currentPlayer]->GetPosition()]->GetType() != E_Card)
+			else
 			{
-				casselli[players[currentPlayer]->GetPosition()]->GetEffect()->PrintEffect();
+				if (casselli[players[currentPlayer]->GetPosition()]->GetType() != E_Harmless && casselli[players[currentPlayer]->GetPosition()]->GetType() != E_Card)
+				{
+					casselli[players[currentPlayer]->GetPosition()]->GetEffect()->PrintEffect();
 
-				string waitToDeploy = "";
-				cin >> waitToDeploy;
+					string waitToDeploy = "";
+					cin >> waitToDeploy;
 
-				if (casselli[players[currentPlayer]->GetPosition()]->GetType() == E_Swap)
-				{
-					casselli[players[currentPlayer]->GetPosition()]->GetEffect()->Deploy(players[currentPlayer], players[rand() % playerCount], 0);
+					if (casselli[players[currentPlayer]->GetPosition()]->GetType() == E_Swap)
+					{
+						casselli[players[currentPlayer]->GetPosition()]->GetEffect()->Deploy(players[currentPlayer], players[rand() % playerCount], 0);
+					}
+					else if (casselli[players[currentPlayer]->GetPosition()]->GetType() == E_Teleport)
+					{
+						casselli[players[currentPlayer]->GetPosition()]->GetEffect()->Deploy(players[currentPlayer], players[currentPlayer], casselliCount - 1);
+					}
+					else
+					{
+						casselli[players[currentPlayer]->GetPosition()]->GetEffect()->Deploy(players[currentPlayer], players[currentPlayer], 0);
+					}
+
+					//Step-backwards clamp
+					if (players[currentPlayer]->GetPosition() < 0)
+					{
+						players[currentPlayer]->SetPosition(0);
+					}
+
+					//Step-forward clamp
+					if (players[currentPlayer]->GetPosition() > casselliCount - 1)
+					{
+						players[currentPlayer]->SetPosition(casselliCount - 1);
+					}
 				}
-				else if (casselli[players[currentPlayer]->GetPosition()]->GetType() == E_Teleport)
+				else if (casselli[players[currentPlayer]->GetPosition()]->GetType() == E_Card)
 				{
-					casselli[players[currentPlayer]->GetPosition()]->GetEffect()->Deploy(players[currentPlayer], players[currentPlayer], casselliCount - 1);
-				}
-				else
-				{
-					casselli[players[currentPlayer]->GetPosition()]->GetEffect()->Deploy(players[currentPlayer], players[currentPlayer], 0);
+					cout << "Hai pescato un carta dal mazzo.";
+					PTR_Effect tmp = effects[rand() % effectCount];
+
+					tmp->PrintEffect();
+					tmp->Deploy(players[currentPlayer], players[currentPlayer], 0);
 				}
 
-				//Step-backwards clamp
-				if (players[currentPlayer]->GetPosition() < 0)
-				{
-					players[currentPlayer]->SetPosition(0);
-				}
-
-				//Step-forward clamp
-				if (players[currentPlayer]->GetPosition() > casselliCount - 1)
-				{
-					players[currentPlayer]->SetPosition(casselliCount - 1);
-				}
+				cout << endl;
+				PrintPath(casselli, casselliCount, players, playerCount);
 			}
-			else if (casselli[players[currentPlayer]->GetPosition()]->GetType() == E_Card)
-			{
-				cout << "Hai pescato un carta dal mazzo.";
-				PTR_Effect tmp = effects[rand() % effectCount];
-
-				tmp->PrintEffect();
-				tmp->Deploy(players[currentPlayer], players[currentPlayer], 0);
-			}
-
-			cout << endl;
-			PrintPath(casselli, casselliCount, players, playerCount);
 		}
 		else
 		{
-			cout<< "Ha saltato un turno Doc " << players[currentPlayer]->GetName();
+			cout<< "Ha saltato un turno Dottor. " << players[currentPlayer]->GetName() << "." << endl;
 			players[currentPlayer]->SetStop(false);
 		}
 		currentPlayer++;

@@ -17,5 +17,5 @@ void Rethrow::Deploy(PTR_Player player, PTR_Player player2, int casselliCount)
 	int h = 0;
 	h = rand() % 6 + 1;
 	cout << "Risultato del dado: " << h;
-	player->SetPosition(player->GetPosition() + h);
+	player->Move(h);
 }

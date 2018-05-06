@@ -34,7 +34,7 @@ int Player::GetPosition()
 
 void Player::SetPosition(int value)
 {
-	this->position = this->position + value;
+	this->position = value;
 }
 
 char Player::GetPawn()
@@ -60,6 +60,11 @@ void Player::SetStop(bool value)
 void Player::Move(int steps)
 {
 	this->position += steps;
+}
+
+void Player::MoveTo(int position)
+{
+	this->position = position;
 }
 
 Player::~Player()

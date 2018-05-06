@@ -14,5 +14,5 @@ StepBack::StepBack(string description) : Effect(description)
 
 void StepBack::Deploy(PTR_Player player, PTR_Player player2, int casselliCount)
 {
-	player->SetPosition(player->GetPosition() - (rand() % 3 + 1));
+	player->Move(- (rand() % 3 + 1));
 }

@@ -19,6 +19,6 @@ void RethrowTryhard::Deploy(PTR_Player player, PTR_Player player2, int casselliC
 	cout << "Ritiro del dado: " << h;
 	string waitToDeploy = "";
 	cin >> waitToDeploy;
-	player->SetPosition(player->GetPosition() + h);
+	player->Move(h);
 	player->SetStop(true);
 }

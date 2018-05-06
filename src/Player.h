@@ -24,6 +24,7 @@ class Player
 		bool GetStop();
 		void SetStop(bool value);
 		void Move(int steps);
+		void MoveTo(int position);
 		void PrintPlayer();
 		virtual ~Player();
 
